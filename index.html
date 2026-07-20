@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIO 40B — Blood (Hematology) Quiz</title>
+    <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+    <header>
+        <h1>BIO 40B — Blood</h1>
+        <p class="subtitle">Hematology · 50-question review</p>
+    </header>
+
+    <main id="app">
+        <!-- Start screen -->
+        <section id="screen-start" class="screen active">
+            <div class="card">
+                <h2>Blood &amp; Hematology Quiz</h2>
+                <p class="muted">50 multiple-choice questions. The correct answer is revealed immediately after you pick. At the end you can retake just the ones you missed — and keep retaking them until you get every question right.</p>
+                <div class="mode-grid">
+                    <button class="mode-card" onclick="startQuiz('ordered')">
+                        <div class="mode-title">Start Quiz</div>
+                        <div class="mode-desc">Questions in order, 1 → 50.</div>
+                        <div class="mode-count">50 questions</div>
+                    </button>
+                    <button class="mode-card hard" onclick="startQuiz('shuffled')">
+                        <div class="mode-title">Shuffle Mode</div>
+                        <div class="mode-desc">Questions and answer order randomized.</div>
+                        <div class="mode-count">50 questions</div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz screen -->
+        <section id="screen-quiz" class="screen">
+            <div class="quiz-header">
+                <div class="progress-row">
+                    <span id="mode-label" class="pill">Quiz</span>
+                    <span id="progress-text">Question 1 of 50</span>
+                    <span id="score-text">Score: 0</span>
+                </div>
+                <div class="progress-bar"><div id="progress-fill"></div></div>
+            </div>
+
+            <div class="card question-card">
+                <div class="topic-tag" id="topic-tag"></div>
+                <div class="question-text" id="question-text"></div>
+                <div class="choices" id="choices"></div>
+                <div class="feedback" id="feedback"></div>
+                <div class="quiz-actions">
+                    <button id="btn-next" class="action-btn primary" onclick="nextQuestion()" disabled>Next →</button>
+                    <button class="action-btn ghost" onclick="quitQuiz()">Quit</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results screen -->
+        <section id="screen-results" class="screen">
+            <div class="card">
+                <h2 id="results-title">Results</h2>
+                <div class="big-score">
+                    <span id="final-score">0</span> / <span id="final-total">50</span>
+                    <span id="final-percent" class="percent">0%</span>
+                </div>
+
+                <div id="perfect-banner" class="perfect-banner">🎉 Perfect — you answered every question correctly!</div>
+
+                <div id="topic-breakdown" class="topic-breakdown"></div>
+
+                <div id="missed-section" class="missed-section">
+                    <h3>Questions you missed</h3>
+                    <div id="missed-list"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="btn-retake-missed" class="action-btn primary" onclick="retakeMissed()">Retake Missed Questions</button>
+                    <button class="action-btn" onclick="restartSameMode()">Restart Full Quiz</button>
+                    <button class="action-btn ghost" onclick="goHome()">Home</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="questions.js?v=1"></script>
+    <script src="app.js?v=1"></script>
+</body>
+</html>
